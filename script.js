@@ -1,8 +1,11 @@
 const dino = document.querySelector('.dino');
 const background = document.querySelector('.background');
+const score = document.querySelector('.score');
 
 let isJumping = false;
 let position = 0;
+let counter = 0;
+let speed = 8;
 
 function handleKeyDown(event) {
   if (event.keyCode === 32) {
@@ -54,7 +57,7 @@ function createCactus() {
       document.body.innerHTML = '<h1 class="game-over">Fim de Jogo</h1>';
     }
     else {
-      cactusPosition -= 10;
+      cactusPosition -= speed;
       cactus.style.left = cactusPosition + 'px';
     }
   }, 20);
@@ -63,4 +66,13 @@ function createCactus() {
 }
 
 createCactus();
+
+const speedGame = setInterval(() => {
+  speed ++;
+}, 10000);
+
+const playerScore = setInterval(() => {
+  score.innerHTML = ++ counter;
+}, 100);
+
 document.addEventListener('keydown', handleKeyDown);
